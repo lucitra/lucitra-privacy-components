@@ -47,6 +47,16 @@ jobs:
       - run: npm install --legacy-peer-deps
       - run: npm run build
 
+      # Create package tarball for attestation
+      - name: Create package tarball
+        run: npm pack
+
+      # Generate GitHub attestation for provenance
+      - name: Generate build attestation
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-path: './lucitra-privacy-components-*.tgz'
+
       - name: Publish to npm
         run: npm publish --access restricted
         env:
