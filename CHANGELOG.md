@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.2.0...privacy-components-v0.2.1) (2025-07-16)
+
+
+### Bug Fixes
+
+* resolve eslint errors in privacy components ([ad30a89](https://github.com/lucitra/lucitra-privacy-components/commit/ad30a8982b16a2ae0bf9d7d47e9dfd7701cae6e6))
+
 ## [0.2.0](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.1.0...privacy-components-v0.2.0) (2025-07-16)
 
 
