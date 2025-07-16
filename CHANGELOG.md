@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.3](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.2.2...privacy-components-v0.2.3) (2025-07-16)
+
+
+### Continuous Integration
+
+* add provenance for private repo ([510233f](https://github.com/lucitra/lucitra-privacy-components/commit/510233fdafa6c52f7e2d1f9e646d8c727b2a869c))
+
 ## [0.2.2](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.2.1...privacy-components-v0.2.2) (2025-07-16)
 
 
