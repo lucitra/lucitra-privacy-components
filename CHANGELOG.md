@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.2.1...privacy-components-v0.2.2) (2025-07-16)
+
+
+### Continuous Integration
+
+* remove provenance for restricted deployment ([6121651](https://github.com/lucitra/lucitra-privacy-components/commit/61216519dffd9daa0e014bdc673113c272a604fb))
+
 ## [0.2.1](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.2.0...privacy-components-v0.2.1) (2025-07-16)
 
 
