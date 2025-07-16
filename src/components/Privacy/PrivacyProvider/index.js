@@ -1,1 +1,2 @@
-export { default as PrivacyProvider, usePrivacy } from './PrivacyProvider.jsx'
+export { default as PrivacyProvider } from './PrivacyProvider.jsx'
+export { usePrivacy } from './usePrivacy.js'

@@ -6,6 +6,7 @@
  * Cross-domain support with configurable domain
  */
 
+import React, { useState } from 'react';
 import { GranularAnalyticsContext } from './GranularAnalyticsContext';
 
 // Enhanced single cookie analytics with granular control

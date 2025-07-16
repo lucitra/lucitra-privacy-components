@@ -67,13 +67,13 @@ export function EnterprisePrivacyManager({
 }) {
   const [activeTab, setActiveTab] = useState("overview");
   const [complianceScore, setComplianceScore] = useState(85);
-  const [_privacyMetrics, _setPrivacyMetrics] = useState({
+  const [privacyMetrics] = useState({
     [PRIVACY_METRICS.EPSILON_CONSUMED]: 0.3,
     [PRIVACY_METRICS.USERS_CONSENTED]: 15420,
     [PRIVACY_METRICS.FEDERATED_PARTICIPANTS]: 8,
     [PRIVACY_METRICS.COMPLIANCE_SCORE]: 85,
   });
-  const [_alerts, _setAlerts] = useState([
+  const [alerts] = useState([
     {
       id: 1,
       type: "warning",
@@ -97,7 +97,7 @@ export function EnterprisePrivacyManager({
     }, 30000); // Update every 30 seconds
 
     return () => clearInterval(interval);
-  }, [complianceScore, onComplianceChange]);
+  }, [complianceScore, onComplianceChange, privacyMetrics]);
 
   const renderOverview = () => (
     <Stack gap="lg">

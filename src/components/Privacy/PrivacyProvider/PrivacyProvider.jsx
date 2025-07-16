@@ -5,6 +5,7 @@
  * Essential for both enterprise and gaming implementations
  */
 
+import React, { useReducer, useEffect } from 'react';
 import { PrivacyContext } from './PrivacyContext';
 import PropTypes from 'prop-types'
 import { 

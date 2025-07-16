@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { PrivacyContext } from './PrivacyProvider';
+import { PrivacyContext } from './PrivacyContext';
 
 export function usePrivacy() {
   const context = useContext(PrivacyContext);
