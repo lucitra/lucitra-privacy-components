@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.4](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.2.3...privacy-components-v0.2.4) (2025-07-16)
+
+
+### Continuous Integration
+
+* add back provenance in different way ([2e91716](https://github.com/lucitra/lucitra-privacy-components/commit/2e91716d9e7eb6497f48f95aed93697cef95cb91))
+* remove command line argument for provenance ([04bb837](https://github.com/lucitra/lucitra-privacy-components/commit/04bb837e77f2bbcc246310def49f878efaf2ee40))
+
 ## [0.2.3](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.2.2...privacy-components-v0.2.3) (2025-07-16)
 
 
