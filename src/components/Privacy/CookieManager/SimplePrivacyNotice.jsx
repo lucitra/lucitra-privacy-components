@@ -8,7 +8,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Group, Text, Paper } from '@mantine/core';
 import { IconCookieMan } from '@tabler/icons-react';
-import { useGranularAnalytics } from './GranularAnalytics.jsx';
+import { useGranularAnalytics } from './useGranularAnalytics';
 
 export const SimplePrivacyNotice = () => {
   const { 

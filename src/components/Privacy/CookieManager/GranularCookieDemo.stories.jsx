@@ -7,10 +7,8 @@
 
 import React from 'react';
 import { GranularCookieDemo } from './GranularCookieDemo.jsx';
-import { 
-  GranularAnalyticsProvider, 
-  useGranularAnalytics 
-} from './GranularAnalytics.jsx';
+import { GranularAnalyticsProvider } from './GranularAnalytics.jsx';
+import { useGranularAnalytics } from './useGranularAnalytics';
 import { SimplePrivacyNotice } from './SimplePrivacyNotice.jsx';
 import { GranularConsentModal } from './GranularConsentModal.jsx';
 import { CurrentPrivacySettings } from './PrivacySettings.jsx';

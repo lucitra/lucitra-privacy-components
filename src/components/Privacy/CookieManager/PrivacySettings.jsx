@@ -16,7 +16,7 @@ import {
   ActionIcon
 } from '@mantine/core';
 import { IconLock, IconSettings } from '@tabler/icons-react';
-import { useGranularAnalytics } from './GranularAnalytics.jsx';
+import { useGranularAnalytics } from './useGranularAnalytics';
 
 // Fixed privacy settings button
 export const PrivacySettingsButton = () => {

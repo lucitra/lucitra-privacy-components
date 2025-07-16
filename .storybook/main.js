@@ -17,6 +17,20 @@ const config = {
   typescript: {
     reactDocgen: 'react-docgen',
   },
+  async viteFinal(config) {
+    // Ensure proper handling of ES modules
+    config.optimizeDeps = {
+      ...config.optimizeDeps,
+      include: [
+        '@mantine/core',
+        '@mantine/hooks',
+        '@tabler/icons-react',
+        'prop-types'
+      ],
+    }
+    return config
+  },
+  staticDirs: ['../public'],
 }
 
 export default config

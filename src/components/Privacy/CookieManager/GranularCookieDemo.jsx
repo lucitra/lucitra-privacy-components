@@ -18,10 +18,8 @@ import {
   Alert
 } from '@mantine/core';
 import { IconDatabase, IconEye, IconSettings, IconBrain } from '@tabler/icons-react';
-import { 
-  GranularAnalyticsProvider, 
-  useGranularAnalytics 
-} from './GranularAnalytics.jsx';
+import { GranularAnalyticsProvider } from './GranularAnalytics.jsx';
+import { useGranularAnalytics } from './useGranularAnalytics';
 import { GranularConsentModal } from './GranularConsentModal.jsx';
 import { SimplePrivacyNotice } from './SimplePrivacyNotice.jsx';
 import { PrivacySettingsButton, CurrentPrivacySettings } from './PrivacySettings.jsx';

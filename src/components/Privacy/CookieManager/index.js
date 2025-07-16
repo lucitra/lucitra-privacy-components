@@ -9,9 +9,10 @@ export {
 // Enhanced granular cookie system
 export { 
   GranularAnalytics, 
-  GranularAnalyticsProvider, 
-  useGranularAnalytics 
+  GranularAnalyticsProvider
 } from './GranularAnalytics.jsx'
+
+export { useGranularAnalytics } from './useGranularAnalytics'
 
 export { GranularConsentModal } from './GranularConsentModal.jsx'
 export { SimplePrivacyNotice } from './SimplePrivacyNotice.jsx'

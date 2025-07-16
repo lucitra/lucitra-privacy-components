@@ -19,7 +19,7 @@ import {
   Divider
 } from '@mantine/core';
 import { IconShield, IconX, IconLock } from '@tabler/icons-react';
-import { useGranularAnalytics } from './GranularAnalytics.jsx';
+import { useGranularAnalytics } from './useGranularAnalytics';
 
 export const GranularConsentModal = () => {
   const { 

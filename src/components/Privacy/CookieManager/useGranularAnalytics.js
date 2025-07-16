@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { GranularAnalyticsContext } from './GranularAnalytics';
+import { GranularAnalyticsContext } from './GranularAnalyticsContext';
 
 export const useGranularAnalytics = () => {
   const context = useContext(GranularAnalyticsContext);
