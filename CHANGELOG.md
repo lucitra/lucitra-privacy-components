@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.5](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.2.4...privacy-components-v0.2.5) (2025-07-16)
+
+
+### Continuous Integration
+
+* add build attestations ([0e40d70](https://github.com/lucitra/lucitra-privacy-components/commit/0e40d70043370fdf4f74cd3facff18863ba2b2a6))
+
 ## [0.2.4](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.2.3...privacy-components-v0.2.4) (2025-07-16)
 
 
