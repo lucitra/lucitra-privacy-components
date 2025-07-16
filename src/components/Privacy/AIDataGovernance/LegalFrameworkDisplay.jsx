@@ -28,7 +28,7 @@ import {
   IconBook
 } from '@tabler/icons-react';
 import PropTypes from 'prop-types';
-import { useAIDataGovernance } from './AIDataGovernance.jsx';
+import { useAIDataGovernance } from './useAIDataGovernance';
 
 export function LegalFrameworkDisplay({ selectedJurisdiction = 'eu', ...rest }) {
   const { governance } = useAIDataGovernance();

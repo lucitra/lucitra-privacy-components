@@ -1,4 +1,5 @@
-export { default as AIDataGovernanceProvider, useAIDataGovernance, LucitraAIDataGovernance } from './AIDataGovernance.jsx'
+export { default as AIDataGovernanceProvider, LucitraAIDataGovernance } from './AIDataGovernance.jsx'
+export { useAIDataGovernance } from './useAIDataGovernance'
 export { default as DataClassificationDashboard } from './DataClassificationDashboard.jsx'
 export { default as ComplianceDashboard } from './ComplianceDashboard.jsx'
 export { default as LegalFrameworkDisplay } from './LegalFrameworkDisplay.jsx'

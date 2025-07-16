@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { AIDataGovernanceContext } from './AIDataGovernance';
+import { AIDataGovernanceContext } from './AIDataGovernanceContext';
 
 export const useAIDataGovernance = () => {
   const context = useContext(AIDataGovernanceContext);

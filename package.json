@@ -2,7 +2,10 @@
   "name": "@lucitra/privacy-components",
   "version": "1.0.0",
   "description": "Enterprise Privacy-Enhancing Technology Components",
-  "private": true,
+  "private": false,
+  "publishConfig": {
+    "access": "restricted"
+  },
   "type": "module",
   "keywords": [
     "privacy",

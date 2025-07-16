@@ -5,6 +5,7 @@
  * Exceeds global standards: GDPR, CCPA, EU AI Act, PIPEDA, LGPD, COPPA
  */
 
+import React, { useState, useEffect } from 'react';
 import { AIDataGovernanceContext } from './AIDataGovernanceContext';
 import PropTypes from 'prop-types';
 

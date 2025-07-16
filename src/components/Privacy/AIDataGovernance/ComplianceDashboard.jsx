@@ -36,7 +36,7 @@ import {
   IconCircleCheck
 } from '@tabler/icons-react';
 import PropTypes from 'prop-types';
-import { useAIDataGovernance } from './AIDataGovernance.jsx';
+import { useAIDataGovernance } from './useAIDataGovernance';
 
 export function ComplianceDashboard({ onExportReport, ...rest }) {
   const { complianceReport, generateReport } = useAIDataGovernance();

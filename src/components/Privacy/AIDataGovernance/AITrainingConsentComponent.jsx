@@ -34,7 +34,7 @@ import {
   IconEye
 } from '@tabler/icons-react';
 import PropTypes from 'prop-types';
-import { useAIDataGovernance } from './AIDataGovernance.jsx';
+import { useAIDataGovernance } from './useAIDataGovernance';
 
 // Consent storage utility
 const ConsentStorage = {

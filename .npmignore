@@ -1,0 +1,53 @@
+# Source code
+src/
+stories/
+
+# Development files
+.github/
+.husky/
+.storybook/
+coverage/
+storybook-static/
+
+# Config files
+.commitlintrc.json
+.editorconfig
+.eslintrc.json
+.prettierrc
+rollup.config.js
+vite.config.js
+vitest.config.js
+release-please-config.json
+.release-please-manifest.json
+
+# Git files
+.git/
+.gitignore
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test files
+**/__tests__/
+**/*.test.js
+**/*.test.jsx
+**/*.spec.js
+**/*.spec.jsx
+
+# Documentation source
+docs/
+
+# Temporary files
+*.log
+*.tmp
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

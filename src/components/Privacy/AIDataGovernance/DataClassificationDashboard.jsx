@@ -27,7 +27,7 @@ import {
   IconInfoCircle
 } from '@tabler/icons-react';
 import PropTypes from 'prop-types';
-import { useAIDataGovernance } from './AIDataGovernance.jsx';
+import { useAIDataGovernance } from './useAIDataGovernance';
 
 export function DataClassificationDashboard({ onClassificationComplete, ...rest }) {
   const { governance } = useAIDataGovernance();
