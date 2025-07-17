@@ -40,17 +40,17 @@ export const ModularButton = ({
         case 'primary':
           return {
             ...baseStyles,
-            backgroundColor: 'black',
+            backgroundColor: '#0056b3',
             color: 'white',
-            border: '2px solid black'
+            border: '2px solid #0056b3'
           }
         
         case 'secondary':
           return {
             ...baseStyles,
-            backgroundColor: 'black',
+            backgroundColor: '#545b62',
             color: 'white',
-            border: '2px solid black'
+            border: '2px solid #545b62'
           }
         
         case 'outline':
@@ -75,17 +75,17 @@ export const ModularButton = ({
       case 'primary':
         return {
           ...baseStyles,
-          backgroundColor: 'black',
+          backgroundColor: '#007bff',
           color: 'white',
-          border: '2px solid black'
+          border: '2px solid #007bff'
         }
       
       case 'secondary':
         return {
           ...baseStyles,
-          backgroundColor: 'white',
-          color: 'black',
-          border: '2px solid black'
+          backgroundColor: '#6c757d',
+          color: 'white',
+          border: '2px solid #6c757d'
         }
       
       case 'outline':
