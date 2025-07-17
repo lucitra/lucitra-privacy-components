@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.2](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.3.1...privacy-components-v0.3.2) (2025-07-17)
+
+
+### Miscellaneous Chores
+
+* update version to 0.3.2 and modify deployment workflows ([813113f](https://github.com/lucitra/lucitra-privacy-components/commit/813113fa30c8f9091d0aa342edd35609252d71ce))
+
 ## [0.3.1](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.3.0...privacy-components-v0.3.1) (2025-07-17)
 
 
