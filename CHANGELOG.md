@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.3.2...privacy-components-v0.4.0) (2025-07-17)
+
+
+### Features
+
+* add npm publishing workflow with build attestations ([4c5a531](https://github.com/lucitra/lucitra-privacy-components/commit/4c5a531cd21bf1ff2ccffb079b2d5f4b2e006208))
+
 ## [0.3.2](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.3.1...privacy-components-v0.3.2) (2025-07-17)
 
 
