@@ -35,29 +35,18 @@ jobs:
     permissions:
       contents: read
       id-token: write
-      attestations: write
     steps:
       - uses: actions/checkout@v4
-
+      
       - uses: actions/setup-node@v4
         with:
           node-version: "20.x"
           registry-url: "https://registry.npmjs.org"
-
+      
       - run: npm install --legacy-peer-deps
       - run: npm run build
-
-      # Create package tarball for attestation
-      - name: Create package tarball
-        run: npm pack
-
-      # Generate GitHub attestation for provenance
-      - name: Generate build attestation
-        uses: actions/attest-build-provenance@v1
-        with:
-          subject-path: './lucitra-privacy-components-*.tgz'
-
+      
       - name: Publish to npm
-        run: npm publish --access restricted
+        run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
