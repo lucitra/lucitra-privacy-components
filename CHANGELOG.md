@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.3.0...privacy-components-v0.3.1) (2025-07-17)
+
+
+### Styles
+
+* update colors for primary and secondary variants ([9fc79c4](https://github.com/lucitra/lucitra-privacy-components/commit/9fc79c4b641da7a24b63708c4ba210748d7c4a25))
+
 ## [0.3.0](https://github.com/lucitra/lucitra-privacy-components/compare/v0.2.6...v0.3.0) (2025-07-17)
 
 
