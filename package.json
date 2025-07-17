@@ -1,11 +1,10 @@
 {
   "name": "@lucitra/privacy-components",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Enterprise Privacy-Enhancing Technology Components",
   "private": false,
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
-    "access": "restricted"
+    "access": "public"
   },
   "type": "module",
   "keywords": [
