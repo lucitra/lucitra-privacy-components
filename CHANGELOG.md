@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.2](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.4.1...privacy-components-v0.4.2) (2025-07-17)
+
+
+### Bug Fixes
+
+* update tarball filename generation in publish workflow ([6bf9883](https://github.com/lucitra/lucitra-privacy-components/commit/6bf9883e5ce2522367391fc834ae8765fd0a328a))
+
 ## [0.4.1](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.4.0...privacy-components-v0.4.1) (2025-07-17)
 
 
