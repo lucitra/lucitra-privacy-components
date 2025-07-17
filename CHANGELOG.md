@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.4](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.4.3...privacy-components-v0.4.4) (2025-07-17)
+
+
+### Miscellaneous Chores
+
+* remove provenance flag from npm publish command ([7c1effb](https://github.com/lucitra/lucitra-privacy-components/commit/7c1effbcae2bb59b928baecafe0ca5965ce53c14))
+
 ## [0.4.3](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.4.2...privacy-components-v0.4.3) (2025-07-17)
 
 
