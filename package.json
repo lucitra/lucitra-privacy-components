@@ -19,7 +19,7 @@
   "license": "Commercial",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lucitra/privacy-components.git"
+    "url": "git+https://github.com/lucitra/lucitra-privacy-components.git"
   },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
