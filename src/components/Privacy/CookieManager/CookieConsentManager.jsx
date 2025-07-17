@@ -1,19 +1,18 @@
 /**
- * Granular Consent Modal - Mantine UI Implementation
+ * Cookie Consent Manager
  * 
- * Modern modal for granular cookie consent with black/white styling
- * Clean, transparent privacy controls
- * 
- * Enhanced with MantineProvider context handling for portals
+ * Consolidated component that handles both the simple privacy notice and granular consent modal
+ * Provides MantineProvider context handling for reliable usage in any application
  */
 
 import React, { useState, useEffect } from 'react';
 import { 
-  Modal, 
-  Title, 
-  Text, 
   Button, 
   Group, 
+  Text, 
+  Paper, 
+  Modal, 
+  Title,
   Stack, 
   Card, 
   Switch,
@@ -22,16 +21,139 @@ import {
   MantineProvider,
   useMantineTheme
 } from '@mantine/core';
-import { IconShield, IconX, IconLock } from '@tabler/icons-react';
+import { IconCookieMan, IconShield, IconX, IconLock } from '@tabler/icons-react';
 import { useGranularAnalytics } from './useGranularAnalytics';
 
-const ModalContent = ({ 
-  consentSettings, 
-  updateConsent, 
-  categories, 
-  showConsentModal, 
-  setShowConsentModal 
-}) => {
+const SimpleNoticeContent = ({ onCustomize }) => {
+  const { 
+    consentSettings, 
+    updateConsent, 
+    setShowConsentModal 
+  } = useGranularAnalytics();
+  
+  const [showNotice, setShowNotice] = useState(false);
+  
+  useEffect(() => {
+    // Show simple notice if no granular choice made
+    const hasChoice = consentSettings.timestamp;
+    if (!hasChoice) {
+      setShowNotice(true);
+    }
+  }, [consentSettings]);
+  
+  const handleAccept = () => {
+    updateConsent({
+      essential: true,
+      analytics: true,
+      product: true,
+      performance: true
+    });
+    setShowNotice(false);
+  };
+  
+  const handleDecline = () => {
+    updateConsent({
+      essential: true,
+      analytics: false,
+      product: false,
+      performance: false
+    });
+    setShowNotice(false);
+  };
+  
+  const handleCustomize = () => {
+    setShowNotice(false);
+    if (onCustomize) {
+      onCustomize();
+    } else {
+      setShowConsentModal(true);
+    }
+  };
+  
+  if (!showNotice || consentSettings.timestamp) return null;
+  
+  return (
+    <div style={{
+      position: 'fixed',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      zIndex: 1000,
+      padding: '16px'
+    }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        <Paper
+          p="lg"
+          style={{
+            backgroundColor: 'white',
+            border: '2px solid black',
+            borderRadius: 0
+          }}
+        >
+          <Group justify="space-between" align="flex-start">
+            <Group gap="lg" style={{ flex: 1 }}>
+              <IconCookieMan size={24} color="black" style={{ flexShrink: 0, marginTop: '4px' }} />
+              <div>
+                <Text fw={600} c="black" mb="xs">
+                  We use a single cookie
+                </Text>
+                <Text size="sm" c="gray.7">
+                  Lucitra.ai uses one first-party cookie for analytics and platform functionality.
+                  <br />
+                  No third-party tracking. Complete privacy control.
+                </Text>
+              </div>
+            </Group>
+            
+            <Group gap="sm" style={{ flexShrink: 0 }}>
+              <Button
+                onClick={handleAccept}
+                style={{
+                  backgroundColor: 'black',
+                  color: 'white',
+                  border: '2px solid black'
+                }}
+                size="sm"
+              >
+                Accept
+              </Button>
+              
+              <Button
+                onClick={handleDecline}
+                variant="outline"
+                style={{
+                  backgroundColor: 'white',
+                  color: 'gray',
+                  border: '1px solid gray'
+                }}
+                size="sm"
+              >
+                Essential Only
+              </Button>
+              
+              <Button
+                onClick={handleCustomize}
+                variant="subtle"
+                style={{ color: 'black' }}
+                size="sm"
+              >
+                Customize
+              </Button>
+            </Group>
+          </Group>
+        </Paper>
+      </div>
+    </div>
+  );
+};
+
+const GranularModalContent = ({ showModal, onClose }) => {
+  const { 
+    consentSettings, 
+    updateConsent, 
+    categories
+  } = useGranularAnalytics();
+  
   const [tempSettings, setTempSettings] = useState(consentSettings);
   
   useEffect(() => {
@@ -53,6 +175,7 @@ const ModalContent = ({
       return acc;
     }, {});
     updateConsent(allEnabled);
+    onClose();
   };
   
   const handleRejectAll = () => {
@@ -62,20 +185,22 @@ const ModalContent = ({
       product: false,
       performance: false
     });
+    onClose();
   };
   
   const handleSaveCustom = () => {
     updateConsent(tempSettings);
+    onClose();
   };
   
   return (
     <Modal
-      opened={showConsentModal}
-      onClose={() => setShowConsentModal(false)}
+      opened={showModal}
+      onClose={onClose}
       title={null}
       size="lg"
       centered
-      withinPortal={false} // We handle portals ourselves
+      withinPortal={false} // We handle context ourselves
       styles={{
         modal: {
           backgroundColor: 'white',
@@ -102,7 +227,7 @@ const ModalContent = ({
           </Group>
           <Button
             variant="subtle"
-            onClick={() => setShowConsentModal(false)}
+            onClick={onClose}
             size="xs"
             style={{ color: 'gray' }}
           >
@@ -230,40 +355,51 @@ const ModalContent = ({
   );
 };
 
-export const GranularConsentModal = ({ 
-  withinPortal = false,
-  mantineProvider = null 
-}) => {
-  const { 
-    consentSettings, 
-    updateConsent, 
-    categories, 
-    showConsentModal, 
-    setShowConsentModal 
-  } = useGranularAnalytics();
+const ConsentManagerContent = () => {
+  const [showModal, setShowModal] = useState(false);
   
-  // Always call useMantineTheme at the top level - no conditional calling
-  const currentTheme = useMantineTheme();
-  
-  const modalProps = {
-    consentSettings,
-    updateConsent,
-    categories,
-    showConsentModal,
-    setShowConsentModal
+  const handleOpenModal = () => {
+    setShowModal(true);
   };
   
-  // If we have a custom provider or we're in a portal, wrap with MantineProvider
-  if (mantineProvider || withinPortal) {
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+  
+  return (
+    <>
+      <SimpleNoticeContent onCustomize={handleOpenModal} />
+      <GranularModalContent showModal={showModal} onClose={handleCloseModal} />
+    </>
+  );
+};
+
+/**
+ * Cookie Consent Manager
+ * 
+ * Consolidated component that handles both the simple privacy notice and granular consent modal
+ * Automatically provides MantineProvider context for reliable usage in any application
+ * 
+ * @param {Object} props - Component props
+ * @param {Object} [props.mantineProvider] - Custom Mantine theme to use
+ */
+export const CookieConsentManager = ({ 
+  mantineProvider = null
+}) => {
+  // Always call useMantineTheme at the top level - no conditional calling
+  useMantineTheme();
+  
+  // If a custom provider is specified, use it
+  if (mantineProvider) {
     return (
-      <MantineProvider theme={mantineProvider || currentTheme}>
-        <ModalContent {...modalProps} />
+      <MantineProvider theme={mantineProvider}>
+        <ConsentManagerContent />
       </MantineProvider>
     );
   }
   
   // Otherwise, render normally (we're within a MantineProvider since useMantineTheme worked)
-  return <ModalContent {...modalProps} />;
+  return <ConsentManagerContent />;
 };
 
-export default GranularConsentModal;
+export default CookieConsentManager;

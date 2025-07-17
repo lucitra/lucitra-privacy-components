@@ -1,6 +1,6 @@
 {
   "name": "@lucitra/privacy-components",
-  "version": "0.2.5",
+  "version": "0.2.7",
   "description": "Enterprise Privacy-Enhancing Technology Components",
   "private": false,
   "publishConfig": {
@@ -52,6 +52,9 @@
   },
   "peerDependencies": {
     "@lucitra/react-components": ">=0.12.0",
+    "@mantine/core": ">=8.0.0",
+    "@mantine/hooks": ">=8.0.0",
+    "@tabler/icons-react": ">=3.0.0",
     "react": ">=19.0.0",
     "react-dom": ">=19.0.0"
   },

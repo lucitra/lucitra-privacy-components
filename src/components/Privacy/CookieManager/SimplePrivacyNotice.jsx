@@ -3,14 +3,16 @@
  * 
  * Minimal bottom banner for cookie consent
  * Clean black/white design with simple messaging
+ * 
+ * Enhanced with MantineProvider context handling
  */
 
 import React, { useState, useEffect } from 'react';
-import { Button, Group, Text, Paper } from '@mantine/core';
+import { Button, Group, Text, Paper, MantineProvider, useMantineTheme } from '@mantine/core';
 import { IconCookieMan } from '@tabler/icons-react';
 import { useGranularAnalytics } from './useGranularAnalytics';
 
-export const SimplePrivacyNotice = () => {
+const NoticeContent = () => {
   const { 
     consentSettings, 
     updateConsent, 
@@ -127,6 +129,25 @@ export const SimplePrivacyNotice = () => {
       </div>
     </div>
   );
+};
+
+export const SimplePrivacyNotice = ({ 
+  mantineProvider = null 
+}) => {
+  // Always call useMantineTheme at the top level - no conditional calling
+  useMantineTheme();
+  
+  // If we have a custom provider, wrap it
+  if (mantineProvider) {
+    return (
+      <MantineProvider theme={mantineProvider}>
+        <NoticeContent />
+      </MantineProvider>
+    );
+  }
+  
+  // Otherwise, render normally (we're within a MantineProvider since useMantineTheme worked)
+  return <NoticeContent />;
 };
 
 export default SimplePrivacyNotice;

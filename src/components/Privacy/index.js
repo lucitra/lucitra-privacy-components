@@ -20,6 +20,7 @@ export {
   useGranularAnalytics,
   GranularConsentModal,
   SimplePrivacyNotice,
+  CookieConsentManager,
   PrivacySettingsButton,
   CurrentPrivacySettings,
   InlinePrivacyToggle,

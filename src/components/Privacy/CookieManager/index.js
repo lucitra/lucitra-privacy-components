@@ -14,8 +14,12 @@ export {
 
 export { useGranularAnalytics } from './useGranularAnalytics'
 
+// Individual components (still available for granular usage)
 export { GranularConsentModal } from './GranularConsentModal.jsx'
 export { SimplePrivacyNotice } from './SimplePrivacyNotice.jsx'
+
+// Consolidated component with MantineProvider handling
+export { CookieConsentManager } from './CookieConsentManager.jsx'
 export { 
   PrivacySettingsButton, 
   CurrentPrivacySettings, 
