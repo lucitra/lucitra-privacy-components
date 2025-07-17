@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.6](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.2.5...privacy-components-v0.2.6) (2025-07-17)
+
+
+### Miscellaneous Chores
+
+* configure npm registry and add auth token ([12682b9](https://github.com/lucitra/lucitra-privacy-components/commit/12682b968cb4efc7839f712d2a0e7ea7d23555f5))
+* update privacy-components to version 0.2.7 ([a2aa40d](https://github.com/lucitra/lucitra-privacy-components/commit/a2aa40d97e4c146ded1fe7fd0edc1c764b38bd20))
+
 ## [0.2.5](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.2.4...privacy-components-v0.2.5) (2025-07-16)
 
 
