@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.4.0...privacy-components-v0.4.1) (2025-07-17)
+
+
+### Miscellaneous Chores
+
+* update peer dependencies in package-lock.json ([eb26422](https://github.com/lucitra/lucitra-privacy-components/commit/eb264225b94308d3aac482e038162e0bc58267a9))
+
 ## [0.4.0](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.3.2...privacy-components-v0.4.0) (2025-07-17)
 
 
