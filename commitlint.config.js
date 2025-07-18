@@ -18,24 +18,10 @@ export default {
         'revert'    // Revert previous commit
       ]
     ],
-    'scope-enum': [
-      2,
-      'always',
-      [
-        'privacy',      // Core privacy functionality
-        'consent',      // Consent management
-        'analytics',    // Analytics and tracking
-        'ai',          // AI governance components
-        'compliance',   // Compliance and legal components
-        'ui',          // UI components
-        'config',      // Configuration changes
-        'deps',        // Dependencies
-        'security',    // Security-related changes
-        'performance'  // Performance optimizations
-      ]
-    ],
     'subject-case': [2, 'always', 'lower-case'],
-    'subject-max-length': [2, 'always', 72],
-    'body-max-line-length': [2, 'always', 100]
+    'subject-full-stop': [2, 'never', '.'],
+    'subject-max-length': [2, 'always', 100],
+    'header-max-length': [2, 'always', 100],
+    'body-max-line-length': [2, 'always', 200]
   }
 }
