@@ -1,73 +1,43 @@
 /**
- * Cookie Manager - Storybook Stories
+ * Cookie Manager - Legacy Stories
  * 
- * Production-ready cookie management with real browser cookies
+ * Demonstrates the low-level cookie utilities that remain
+ * For full privacy UI, see the Unified Privacy System stories
  */
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { Stack, Container, Alert, Group, Badge, Text, Button, Code } from '@mantine/core';
 import { IconCookieMan, IconShield, IconDatabase, IconCheck } from '@tabler/icons-react';
 
-import CookieConsentBanner from './CookieConsentBanner';
 import { useCookieManager } from './CookieManager';
 
 export default {
-  title: 'Business Components/Privacy Suite/Cookie Manager',
-  component: CookieConsentBanner,
+  title: 'Privacy/Cookie Utilities',
   parameters: {
     layout: 'fullscreen',
     docs: {
       description: {
         component: `
-# Production Cookie Manager - Minimal Black & White Design
+# Cookie Utilities
 
-**Simplified cookie management with monochrome design**
+**Low-level cookie management utilities**
 
-## Design Principles
-- **Minimal**: Clean, black and white interface
-- **Modular**: Gray borders for subsections, black for main sections
-- **Engineering Focus**: Unicode symbols with gray backgrounds for technical data
-- **No Color Dependency**: Information hierarchy through typography and borders
+This demonstrates the low-level cookie utilities for advanced use cases:
+- Raw cookie management functions
+- Cross-domain cookie utilities  
+- GDPR compliance utilities
+- Audit trail functionality
 
-## Features
-- Minimal cookie banner mode for simple consent
-- Full dashboard for detailed preferences
-- Monochrome design with gray/black borders
-- Unicode symbols for technical metrics
-- Modular card-based layout
+For complete privacy UI components, see: \`Privacy/Unified System\`
         `
       }
     }
-  }
-}
-
-// Minimal Cookie Consent
-export const MinimalCookieConsent = {
-  name: 'Minimal Cookie Consent',
-  render: function Render() {
-    return (
-      <Container size="xl" py="xl">
-        <Alert mb="xl" style={{ backgroundColor: 'white', border: '1px solid black' }}>
-          <Text fw={600} c="black">Minimal Cookie Consent Demo</Text>
-          <Text size="sm" c="gray.7">
-            Simple black and white cookie banner for minimal impact
-          </Text>
-        </Alert>
-        
-        <CookieConsentBanner
-          minimal={true}
-          showBannerOnMount={true}
-          autoShow={true}
-          onConsentChange={(data) => console.log('Consent changed:', data)}
-        />
-      </Container>
-    );
   }
 };
 
 // Live Cookie Demo
 export const LiveCookieDemo = {
-  name: 'Live Cookie Management',
+  name: 'Low-Level Cookie Utilities',
   render: function Render() {
     const { 
       cookieManager, 
@@ -78,7 +48,6 @@ export const LiveCookieDemo = {
     
     const [allCookies, setAllCookies] = useState({});
     const [complianceReport, setComplianceReport] = useState(null);
-    const [consentData, setConsentData] = useState(null);
     
     // Refresh cookie data
     const refreshData = useCallback(() => {
@@ -116,29 +85,19 @@ export const LiveCookieDemo = {
     
     return (
       <Container size="xl" py="xl">
-        <Alert mb="xl" color="blue" icon={<IconCookieMan />}>
+        <Alert mb="xl" color="yellow" icon={<IconCookieMan />}>
           <Group justify="space-between">
             <div>
-              <Text fw={600}>Live Cookie Manager Demo</Text>
+              <Text fw={600}>Cookie Management Utilities</Text>
               <Text size="sm">
-                Real browser cookies - check DevTools Application tab to see actual cookies
+                Low-level cookie functions for advanced use cases
               </Text>
             </div>
-            <Badge color="blue" size="lg">Production Ready</Badge>
+            <Badge color="blue" size="lg">Utilities</Badge>
           </Group>
         </Alert>
         
         <Stack gap="xl">
-          {/* Cookie Consent Interface */}
-          <CookieConsentBanner
-            showBannerOnMount={false}
-            onConsentChange={setConsentData}
-            customBranding={{
-              title: 'Lucitra Cookie Preferences',
-              subtitle: 'Manage your privacy settings',
-              primaryColor: '#7c3aed'
-            }}
-          />
           
           {/* Live Cookie Data */}
           <Alert color="green" icon={<IconDatabase />}>
@@ -160,18 +119,6 @@ export const LiveCookieDemo = {
             )}
           </Alert>
           
-          {/* Consent Status */}
-          {consentData && (
-            <Alert color="green" icon={<IconCheck />}>
-              <Text fw={600} mb="xs">Consent Updated</Text>
-              <Text size="sm">
-                Categories: {Object.values(consentData.preferences).filter(Boolean).length}/4 enabled | 
-                Source: {consentData.source} |
-                Time: {new Date(consentData.timestamp).toLocaleTimeString()}
-              </Text>
-            </Alert>
-          )}
-          
           {/* Compliance Report */}
           {complianceReport && (
             <Alert color="purple" icon={<IconShield />}>
@@ -184,15 +131,39 @@ export const LiveCookieDemo = {
               </Text>
             </Alert>
           )}
+          
+          {/* API Examples */}
+          <Alert color="gray">
+            <Text fw={600} mb="xs">Available Utility Functions</Text>
+            <Code block style={{ fontSize: '11px' }}>
+{`// Low-level cookie utilities
+const { cookieManager } = useCookieManager();
+
+// Set a cookie
+cookieManager.setCookie('name', 'value', { days: 30 });
+
+// Get a cookie  
+const value = cookieManager.getCookie('name');
+
+// Delete a cookie
+cookieManager.deleteCookie('name');
+
+// Get all Lucitra cookies
+const allCookies = cookieManager.getAllLucitraCookies();
+
+// Cross-domain sync
+cookieManager.syncAcrossDomains();`}
+            </Code>
+          </Alert>
         </Stack>
       </Container>
     );
   }
-}
+};
 
 // Cross-Domain Demo
 export const CrossDomainDemo = {
-  name: 'Cross-Domain Cookie Sharing',
+  name: 'Cross-Domain Cookie Utilities',
   render: function Render() {
     const { cookieManager } = useCookieManager();
     const [syncStatus, setSyncStatus] = useState('Ready');
@@ -212,15 +183,16 @@ export const CrossDomainDemo = {
     return (
       <Container size="xl" py="xl">
         <Alert mb="xl" color="teal" icon={<IconShield />}>
-          <Text fw={600}>Cross-Domain Cookie Sharing</Text>
+          <Text fw={600}>Cross-Domain Cookie Utilities</Text>
           <Text size="sm">
-            Demonstrates consent synchronization across *.lucitra.ai subdomains
+            Low-level utilities for consent synchronization across *.lucitra.ai subdomains
           </Text>
         </Alert>
         
         <Stack gap="lg">
+          
           <Text>
-            This demo shows how consent preferences can be shared across multiple Lucitra subdomains:
+            This demo shows the underlying cookie utilities for cross-domain functionality:
           </Text>
           
           <ul>
@@ -250,22 +222,29 @@ export const CrossDomainDemo = {
             </Text>
           </Alert>
           
-          <CookieConsentBanner
-            showBannerOnMount={false}
-            customBranding={{
-              title: 'Cross-Domain Consent Demo',
-              subtitle: 'Works across all Lucitra properties'
-            }}
-          />
+          <Alert color="purple">
+            <Text fw={600} mb="xs">Implementation Example:</Text>
+            <Code block style={{ fontSize: '11px' }}>
+{`// Cross-domain cookie setup
+cookieManager.setCookie('consent', data, {
+  domain: '.lucitra.ai',  // Available to all subdomains
+  secure: true,
+  sameSite: 'Lax'
+});
+
+// Sync across domains
+cookieManager.syncAcrossDomains();`}
+            </Code>
+          </Alert>
         </Stack>
       </Container>
     );
   }
-}
+};
 
 // Compliance Features Demo
 export const ComplianceDemo = {
-  name: 'GDPR Compliance Features',
+  name: 'GDPR Compliance Utilities',
   render: function Render() {
     const { 
       _cookieManager, 
@@ -300,13 +279,14 @@ export const ComplianceDemo = {
     return (
       <Container size="xl" py="xl">
         <Alert mb="xl" color="green" icon={<IconShield />}>
-          <Text fw={600}>GDPR Compliance Features</Text>
+          <Text fw={600}>GDPR Compliance Utilities</Text>
           <Text size="sm">
-            Right to access, portability, erasure, and audit trails
+            Low-level functions for data rights: access, portability, erasure, and audit trails
           </Text>
         </Alert>
         
         <Stack gap="lg">
+          
           <Group gap="sm">
             <Button onClick={handleExportData} leftSection={<IconDatabase size={16} />}>
               Export My Data (GDPR Article 20)
@@ -318,14 +298,6 @@ export const ComplianceDemo = {
               Show Audit Trail
             </Button>
           </Group>
-          
-          <CookieConsentBanner
-            showBannerOnMount={false}
-            customBranding={{
-              title: 'GDPR Compliant Cookies',
-              subtitle: 'Full data rights and transparency'
-            }}
-          />
           
           {exportData && (
             <Alert color="blue">
@@ -348,6 +320,23 @@ export const ComplianceDemo = {
               </Stack>
             </Alert>
           )}
+          
+          <Alert color="gray">
+            <Text fw={600} mb="xs">Available GDPR Functions</Text>
+            <Code block style={{ fontSize: '11px' }}>
+{`// GDPR utility functions
+const { exportUserData, clearAllCookies } = useCookieManager();
+
+// Export user data (Article 20)
+const data = exportUserData();
+
+// Delete all data (Right to Erasure)
+clearAllCookies(false);
+
+// Get compliance report
+const report = generateComplianceReport();`}
+            </Code>
+          </Alert>
         </Stack>
       </Container>
     );

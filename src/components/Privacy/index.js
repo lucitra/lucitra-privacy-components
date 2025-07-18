@@ -1,3 +1,15 @@
+// =============================================================================
+// UNIFIED PRIVACY SYSTEM
+// =============================================================================
+// Single, configurable privacy management system for all use cases
+
+export * from './Unified'
+
+// =============================================================================
+// SPECIALIZED COMPONENTS
+// =============================================================================
+// Specialized components for enterprise and advanced use cases
+
 // Privacy Enhancing Technology Components
 // Enterprise-grade privacy controls for immediate PET revenue
 // Gaming privacy demos to showcase technology capabilities
@@ -13,18 +25,11 @@ export * from './AIDataGovernance'
 // Production Cookie Manager - Real browser cookies with compliance
 export * from './CookieManager'
 
-// Enhanced Granular Cookie System
+// Privacy Settings Components
 export {
-  GranularAnalytics,
-  GranularAnalyticsProvider,
-  useGranularAnalytics,
-  GranularConsentModal,
-  SimplePrivacyNotice,
-  CookieConsentManager,
   PrivacySettingsButton,
   CurrentPrivacySettings,
   InlinePrivacyToggle,
-  GranularCookieDemo,
   EnterpriseConsentManager
 } from './CookieManager'
 

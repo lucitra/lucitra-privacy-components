@@ -16,15 +16,15 @@ import {
   ActionIcon
 } from '@mantine/core';
 import { IconLock, IconSettings } from '@tabler/icons-react';
-import { useGranularAnalytics } from './useGranularAnalytics';
+import { useUnifiedPrivacy } from '../Unified/UnifiedPrivacyContext';
 
 // Fixed privacy settings button
 export const PrivacySettingsButton = () => {
-  const { setShowConsentModal } = useGranularAnalytics();
+  const { setShowModal } = useUnifiedPrivacy();
   
   return (
     <ActionIcon
-      onClick={() => setShowConsentModal(true)}
+      onClick={() => setShowModal(true)}
       size="lg"
       style={{
         position: 'fixed',
@@ -45,7 +45,7 @@ export const PrivacySettingsButton = () => {
 
 // Current privacy settings dashboard
 export const CurrentPrivacySettings = () => {
-  const { consentSettings, categories, canTrack } = useGranularAnalytics();
+  const { consentData, categories, canTrack } = useUnifiedPrivacy();
   
   return (
     <Card
@@ -99,9 +99,9 @@ export const CurrentPrivacySettings = () => {
         ))}
       </Stack>
       
-      {consentSettings.timestamp && (
+      {consentData?.timestamp && (
         <Text size="xs" c="gray.6" mt="md">
-          Last updated: {new Date(consentSettings.timestamp).toLocaleString()}
+          Last updated: {new Date(consentData.timestamp).toLocaleString()}
         </Text>
       )}
     </Card>
@@ -110,7 +110,7 @@ export const CurrentPrivacySettings = () => {
 
 // Inline settings toggle for pages
 export const InlinePrivacyToggle = ({ category, label }) => {
-  const { canTrack, setShowConsentModal } = useGranularAnalytics();
+  const { canTrack, setShowModal } = useUnifiedPrivacy();
   
   return (
     <Group gap="sm">
@@ -128,7 +128,7 @@ export const InlinePrivacyToggle = ({ category, label }) => {
       </div>
       
       <Button
-        onClick={() => setShowConsentModal(true)}
+        onClick={() => setShowModal(true)}
         variant="subtle"
         size="xs"
         style={{ color: 'blue' }}
