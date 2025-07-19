@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.5.0](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.4.4...privacy-components-v0.5.0) (2025-07-19)
+
+
+### Features
+
+* implement unified privacy management system ([f4c23b4](https://github.com/lucitra/lucitra-privacy-components/commit/f4c23b4161c853483e34929148a067911bb9e81c))
+
+
+### Miscellaneous Chores
+
+* update commitlint configuration for improved validation ([1eaf01c](https://github.com/lucitra/lucitra-privacy-components/commit/1eaf01cd3f3a1e791ae5613360f5e18007b56cf1))
+
 ## [0.4.4](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.4.3...privacy-components-v0.4.4) (2025-07-17)
 
 
