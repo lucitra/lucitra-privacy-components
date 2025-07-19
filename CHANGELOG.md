@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.5.0...privacy-components-v0.5.1) (2025-07-19)
+
+
+### Documentation
+
+* add CLAUDE.md for project guidance and commit message guidelines ([f667627](https://github.com/lucitra/lucitra-privacy-components/commit/f667627a59c8835042b218a1fe20753b112ac16f))
+
 ## [0.5.0](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.4.4...privacy-components-v0.5.0) (2025-07-19)
 
 
