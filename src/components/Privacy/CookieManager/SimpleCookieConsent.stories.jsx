@@ -82,8 +82,8 @@ const Template = (args) => (
 
 export const Default = Template.bind({})
 Default.args = {
-  websiteName: 'MyPerfectResume.com',
-  message: 'uses cookies as well as our third-party affiliates. When you use our website, you understand that we collect personal data to improve your experience.',
+  websiteName: 'This website',
+  message: 'uses cookies to enhance your experience. By continuing to use our site, you consent to our use of cookies.',
   privacyPolicyUrl: '/privacy-policy',
   position: 'bottom',
   storageKey: 'simple_cookie_consent_demo'

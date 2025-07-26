@@ -12,8 +12,8 @@ import PropTypes from 'prop-types'
 import { ModularCard, ModularButton } from '../UI'
 
 export const SimpleCookieConsent = ({
-  websiteName = 'MyPerfectResume.com',
-  message = 'uses cookies as well as our third-party affiliates. When you use our website, you understand that we collect personal data to improve your experience.',
+  websiteName = 'This website',
+  message = 'uses cookies to enhance your experience. By continuing to use our site, you consent to our use of cookies.',
   privacyPolicyUrl = '/privacy-policy',
   onAccept = () => {},
   position = 'bottom',
