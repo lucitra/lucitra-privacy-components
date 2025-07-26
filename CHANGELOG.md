@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.6.0](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.5.1...privacy-components-v0.6.0) (2025-07-26)
+
+
+### Features
+
+* introduce ComplianceCookieConsent for GDPR & CCPA compliance ([89e7f09](https://github.com/lucitra/lucitra-privacy-components/commit/89e7f09798265086be62a14ed7de6beb5534f231))
+
+
+### Bug Fixes
+
+* update cookie consent messaging for clarity and consistency ([206dd30](https://github.com/lucitra/lucitra-privacy-components/commit/206dd30a4c66057bab69cd6712a236b675bfa98b))
+
+
+### Miscellaneous Chores
+
+* update Storybook and privacy components ([ad992e7](https://github.com/lucitra/lucitra-privacy-components/commit/ad992e7b6096c5664c1cdead15a44e8e07325892))
+
+
+### Code Refactoring
+
+* enhance ComplianceCookieConsent UI and improve accessibility ([35c852d](https://github.com/lucitra/lucitra-privacy-components/commit/35c852dc8cad2c1163c6cd487396e65f43f78ced))
+
 ## [0.5.1](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.5.0...privacy-components-v0.5.1) (2025-07-19)
 
 
