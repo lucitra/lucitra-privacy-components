@@ -1,29 +1,19 @@
 /**
- * Privacy Budget Visualization - Real-time Differential Privacy Monitoring
+ * Privacy Budget Visualization
  * 
- * Visual component showing privacy budget consumption in real-time.
- * Key selling point for enterprise customers.
+ * Real-time differential privacy budget monitoring with alerts
+ * Uses design system components for consistent UI
  */
 
 import React, { useState, useEffect } from 'react'
 import {
-  Paper,
   Title,
   Text,
   Group,
   Stack,
   Grid,
-  ActionIcon,
-  Tooltip,
-  Card
+  Tooltip
 } from '@mantine/core'
-import {
-  ModularCard,
-  StatusIndicator,
-  ModularBadge,
-  AlertBox,
-  ProgressBar
-} from '../UI'
 import {
   IconEye,
   IconShield,
@@ -34,16 +24,17 @@ import {
 } from '@tabler/icons-react'
 import PropTypes from 'prop-types'
 
-/**
- * Privacy Budget Visualization Component
- * 
- * @param {Object} props
- * @param {number} props.currentBudget - Current privacy budget (0-100)
- * @param {number} props.epsilon - Differential privacy epsilon value
- * @param {Array} props.consumptionHistory - Historical budget consumption
- * @param {Function} props.onBudgetAlert - Callback for budget alerts
- * @param {boolean} props.realTimeUpdates - Enable real-time updates
- */
+// Import our new design system components
+import {
+  ModularCard,
+  StatusIndicator,
+  ModularButton,
+  ModularBadge,
+  CodeBlock,
+  AlertBox,
+  ProgressBar
+} from '../UI'
+
 export function PrivacyBudgetVisualization({
   currentBudget = 75,
   epsilon = 1.0,
@@ -65,11 +56,9 @@ export function PrivacyBudgetVisualization({
     if (!realTimeUpdates) return
 
     const interval = setInterval(() => {
-      // Simulate budget consumption
       setBudget(prev => {
         const newBudget = Math.max(0, prev - Math.random() * 0.5)
         
-        // Generate alerts
         if (newBudget < 20 && prev >= 20) {
           const alert = {
             id: Date.now(),
@@ -102,16 +91,15 @@ export function PrivacyBudgetVisualization({
   }, [realTimeUpdates, onBudgetAlert])
 
   useEffect(() => {
-    // Calculate projected depletion
     if (dailyConsumption > 0) {
-      const daysRemaining = budget / (dailyConsumption * 24) // Assuming hourly consumption
+      const daysRemaining = budget / (dailyConsumption * 24)
       setProjectedDepletion(daysRemaining)
     }
   }, [budget, dailyConsumption])
 
-  const _getBudgetStatus = () => {
-    if (budget >= 70) return 'healthy'
-    if (budget >= 30) return 'moderate'
+  const getBudgetStatus = () => {
+    if (budget >= 70) return 'success'
+    if (budget >= 30) return 'warning'
     return 'critical'
   }
 
@@ -128,12 +116,14 @@ export function PrivacyBudgetVisualization({
     return `${days} day${days !== 1 ? 's' : ''}`
   }
 
+  const getProgressVariant = () => {
+    if (budget >= 70) return 'success'
+    if (budget >= 30) return 'warning'
+    return 'error'
+  }
+
   return (
-    <ModularCard 
-      variant="primary"
-      padding="xl"
-      {...rest}
-    >
+    <ModularCard variant="primary" padding="xl" {...rest}>
       <Group justify="space-between" mb="xl">
         <Group>
           <IconEye size={28} color="black" />
@@ -147,97 +137,85 @@ export function PrivacyBudgetVisualization({
         
         <Group>
           {realTimeUpdates && (
-            <ModularBadge variant="primary">
+            <StatusIndicator status="success" size="sm">
               LIVE
-            </ModularBadge>
+            </StatusIndicator>
           )}
           <Tooltip label="Refresh data">
-            <ActionIcon 
-              style={{
-                backgroundColor: 'white',
-                border: '1px solid black',
-                color: 'black'
-              }}
+            <ModularButton
+              variant="outline"
+              size="sm"
               onClick={() => window.location.reload()}
+              leftIcon={<IconRefresh size={16} />}
             >
-              <IconRefresh size={16} />
-            </ActionIcon>
+              Refresh
+            </ModularButton>
           </Tooltip>
         </Group>
       </Group>
 
       {/* Main Budget Display */}
-      <ModularCard 
-        variant="primary"
-        padding="lg"
-        style={{ marginBottom: '24px' }}
-      >
+      <ModularCard variant="accent" mb="lg">
         <Group justify="space-between" mb="md">
           <Text fw={600} size="lg" c="black">Current Privacy Budget</Text>
-          <div>
-            <Text size="xl" fw={700} c="black" style={{ display: 'inline' }}>
+          <Group gap="sm">
+            <Text size="xl" fw={700} c="black">
               {budget.toFixed(1)}%
             </Text>
             <StatusIndicator 
-              status={budget >= 70 ? 'success' : budget >= 30 ? 'warning' : 'error'}
-              size="xs"
+              status={getBudgetStatus()} 
               showDot={true}
-              style={{
-                display: 'inline-block',
-                marginLeft: '8px',
-                padding: '0'
-              }}
+              size="sm"
             >
+              {budget < 10 ? 'CRITICAL' : budget < 30 ? 'LOW' : 'HEALTHY'}
             </StatusIndicator>
-          </div>
+          </Group>
         </Group>
         
         <ProgressBar 
-          value={budget}
-          max={100}
+          value={budget} 
+          variant={getProgressVariant()}
           size="lg"
-          variant={budget >= 70 ? 'success' : budget >= 30 ? 'warning' : 'error'}
-          animate={true}
+          showLabel
           striped={budget < 30}
-          style={{
-            marginBottom: '16px'
-          }}
+          animate={budget < 30}
+          style={{ marginBottom: '16px' }}
         />
         
         <Group justify="space-between">
-          <Text size="sm" c="gray.7" style={{ fontFamily: 'monospace', backgroundColor: 'white', border: '1px solid #dee2e6', padding: '2px 6px' }}>
+          <CodeBlock variant="metric">
             ε = {epsilon} ({getEpsilonDescription()})
-          </Text>
-          <Text size="sm" c="gray.7" fw={600}>
+          </CodeBlock>
+          <ModularBadge variant="status">
             {budget < 10 ? 'CRITICAL' : budget < 30 ? 'LOW' : 'HEALTHY'}
-          </Text>
+          </ModularBadge>
         </Group>
       </ModularCard>
 
       {/* Metrics Grid */}
       <Grid mb="lg">
         <Grid.Col span={6}>
-          <ModularCard variant="secondary" padding="md" style={{ height: '100%' }}>
+          <ModularCard variant="secondary" style={{ height: '100%' }}>
             <Group mb="xs">
               <IconTrendingUp size={20} color="black" />
               <Text fw={600} size="sm" c="black">Daily Consumption</Text>
             </Group>
-            <Text size="xl" fw={700} c="black" style={{ fontFamily: 'monospace' }}>
+            <CodeBlock variant="metric" style={{ fontSize: '20px', fontWeight: 700 }}>
               {(dailyConsumption * 100).toFixed(3)}%
-            </Text>
+            </CodeBlock>
             <Text size="xs" c="gray.7">Epsilon units per day</Text>
           </ModularCard>
         </Grid.Col>
         
         <Grid.Col span={6}>
-          <ModularCard variant="secondary" padding="md" style={{ height: '100%' }}>
+          <ModularCard variant="secondary" style={{ height: '100%' }}>
             <Group mb="xs">
               <IconClock size={20} color="black" />
               <Text fw={600} size="sm" c="black">Projected Depletion</Text>
             </Group>
-            <Text size="xl" fw={700} c="black" style={{ fontFamily: 'monospace' }}>
+            <CodeBlock variant="metric" style={{ fontSize: '20px', fontWeight: 700 }}>
               {projectedDepletion ? formatTime(projectedDepletion) : 'N/A'}
-            </Text>
+            </CodeBlock>
             <Text size="xs" c="gray.7">At current rate</Text>
           </ModularCard>
         </Grid.Col>
@@ -251,14 +229,13 @@ export function PrivacyBudgetVisualization({
             <AlertBox
               key={alert.id}
               variant={alert.type === 'critical' ? 'error' : 'warning'}
-              size="sm"
-              icon={<IconAlertTriangle size={16} color="black" />}
+              icon={<IconAlertTriangle size={16} />}
             >
               <Group justify="space-between">
-                <Text size="sm" c="black">{alert.message}</Text>
-                <Text size="xs" c="gray.7" style={{ fontFamily: 'monospace' }}>
+                <Text size="sm">{alert.message}</Text>
+                <CodeBlock variant="inline">
                   {alert.timestamp.toLocaleTimeString()}
-                </Text>
+                </CodeBlock>
               </Group>
             </AlertBox>
           ))}
@@ -266,7 +243,7 @@ export function PrivacyBudgetVisualization({
       )}
 
       {/* Privacy Technology Info */}
-      <ModularCard variant="primary" padding="lg">
+      <ModularCard variant="status">
         <Group mb="sm">
           <IconShield size={20} color="black" />
           <Text fw={600} c="black">Differential Privacy Guarantee</Text>
@@ -276,15 +253,9 @@ export function PrivacyBudgetVisualization({
           cannot be distinguished, even with unlimited computational power.
         </Text>
         <Group gap="xs">
-          <ModularBadge variant="secondary" size="sm">
-            ε-DIFFERENTIAL PRIVACY
-          </ModularBadge>
-          <ModularBadge variant="secondary" size="sm">
-            FORMALLY VERIFIED
-          </ModularBadge>
-          <ModularBadge variant="secondary" size="sm">
-            INDUSTRY STANDARD
-          </ModularBadge>
+          <ModularBadge variant="code">ε-differential privacy</ModularBadge>
+          <ModularBadge variant="primary">Formally verified</ModularBadge>
+          <ModularBadge variant="secondary">Industry standard</ModularBadge>
         </Group>
       </ModularCard>
     </ModularCard>

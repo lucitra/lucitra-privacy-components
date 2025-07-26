@@ -6,7 +6,6 @@
 
 import React, { useState, useEffect } from 'react'
 import { Text, Group } from '@mantine/core'
-import { IconX } from '@tabler/icons-react'
 import PropTypes from 'prop-types'
 
 import { ModularCard, ModularButton } from '../UI'

@@ -13,8 +13,11 @@ export {
   InlinePrivacyToggle 
 } from './PrivacySettings.jsx'
 
-// Enterprise consent management system (has unique enterprise features)
-export { EnterpriseConsentManager } from './EnterpriseConsentManager.jsx'
-
 // Simple cookie consent banner
 export { SimpleCookieConsent } from './SimpleCookieConsent.jsx'
+
+// GDPR & CCPA compliant cookie consent
+export { ComplianceCookieConsent } from './ComplianceCookieConsent.jsx'
+
+// Shared hooks for consent management
+export { useConsentStorage, useConsentVisibility, generateConsentId } from './useConsentStorage.js'
