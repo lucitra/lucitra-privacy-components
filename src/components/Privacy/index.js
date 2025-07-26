@@ -30,7 +30,8 @@ export {
   PrivacySettingsButton,
   CurrentPrivacySettings,
   InlinePrivacyToggle,
-  EnterpriseConsentManager
+  EnterpriseConsentManager,
+  SimpleCookieConsent
 } from './CookieManager'
 
 // UI Design System Components - Reusable modular components
