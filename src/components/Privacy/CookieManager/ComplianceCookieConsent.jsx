@@ -7,7 +7,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { Text, Group, Stack, Switch, Divider } from '@mantine/core'
-import { IconCookie, IconX, IconSettings, IconShieldCheck, IconChartBar, IconAd } from '@tabler/icons-react'
+import { IconCookie, IconX, IconSettings, IconShieldCheck, IconChartBar, IconAd, IconRobot, IconBan } from '@tabler/icons-react'
 import PropTypes from 'prop-types'
 
 import {
@@ -167,32 +167,36 @@ export const ComplianceCookieConsent = ({
     }))
   }
 
-  // Cookie settings button for users who have already consented
-  if (!showBanner && hasUserChoice) {
-    return (
-      <ModularButton
-        variant="ghost"
-        size="sm"
-        onClick={() => setShowPreferences(true)}
-        leftIcon={<IconCookie size={16} />}
-        aria-label="Open cookie preferences"
-        style={{
-          position: 'fixed',
-          bottom: '20px',
-          left: '20px',
-          zIndex: 1000,
-          backgroundColor: 'white',
-          border: '1px solid gray'
-        }}
-        {...rest}
-      >
-        Cookie Settings
-      </ModularButton>
-    )
-  }
+  // Show cookie settings button for users who have already consented
+  const showSettingsButton = !showBanner && hasUserChoice;
 
   return (
     <>
+      {/* Cookie settings button */}
+      {showSettingsButton && (
+        <ModularButton
+          variant="ghost"
+          size="sm"
+          onClick={() => setShowPreferences(true)}
+          aria-label="Open cookie preferences"
+          style={{
+            position: 'fixed',
+            bottom: '20px',
+            left: '20px',
+            zIndex: 1000,
+            backgroundColor: 'white',
+            border: '1px solid gray',
+            display: 'flex',
+            alignItems: 'center'
+          }}
+          {...rest}
+        >
+          <Group gap="xs" style={{ alignItems: 'center' }}>
+            <IconCookie size={16} />
+            <span>Cookie Settings</span>
+          </Group>
+        </ModularButton>
+      )}
       {/* Cookie Banner */}
       {showBanner && !showPreferences && (
         <div 
@@ -389,28 +393,31 @@ const PreferencesModal = ({
               {enableDoNotSell && (
                 <>
                   <ModularCard variant="accent">
-                    <Group justify="space-between" align="center">
-                      <div style={{ flex: 1 }}>
-                        <Text fw={600} c="black" mb="xs">
-                          Do not sell or share my personal information
-                        </Text>
-                        <Text size="sm" c="gray.7">
-                          We will not sell your personal data to third parties or share it for cross-context behavioral advertising. This is enabled by default to protect your privacy.
-                        </Text>
-                      </div>
-                      <Switch
-                        checked={doNotSell}
-                        onChange={onDoNotSellToggle}
-                        size="md"
-                        color="dark"
-                        styles={{
-                          track: {
-                            borderRadius: 0,
-                            border: '1px solid black'
-                          }
-                        }}
-                      />
-                    </Group>
+                    <Stack gap="xs">
+                      <Group justify="space-between" align="center">
+                        <Group gap="sm">
+                          <IconBan size={20} color="black" />
+                          <Text fw={600} c="black">Do not sell or share my personal information</Text>
+                        </Group>
+                        
+                        <Switch
+                          checked={doNotSell}
+                          onChange={onDoNotSellToggle}
+                          size="md"
+                          color="dark"
+                          styles={{
+                            track: {
+                              borderRadius: 0,
+                              border: '1px solid black'
+                            }
+                          }}
+                        />
+                      </Group>
+                      
+                      <Text size="sm" c="gray.7" pl="28px">
+                        We will not sell your personal data to third parties or share it for cross-context behavioral advertising. This is enabled by default to protect your privacy.
+                      </Text>
+                    </Stack>
                   </ModularCard>
                   <Divider />
                 </>
@@ -420,38 +427,42 @@ const PreferencesModal = ({
               {enableAITraining && (
                 <>
                   <ModularCard variant="accent">
-                    <Group justify="space-between" align="center">
-                      <div style={{ flex: 1 }}>
-                        <Text fw={600} c="black" mb="xs">
-                          AI model training
-                        </Text>
-                        <Text size="sm" c="gray.7" mb={aiTrainingUses.length > 0 ? 'sm' : 0}>
-                          Your anonymized data may be used to train AI models that improve our services. This is completely optional and disabled by default.
-                        </Text>
-                        {aiTrainingUses.length > 0 && (
-                          <Stack gap="xs">
-                            <Text size="xs" fw={500} c="gray.8">We may use your data to:</Text>
-                            {aiTrainingUses.map((use, index) => (
-                              <Text key={index} size="xs" c="gray.7" pl="md">
-                                • {use}
-                              </Text>
-                            ))}
-                          </Stack>
-                        )}
-                      </div>
-                      <Switch
-                        checked={aiTraining}
-                        onChange={onAiTrainingToggle}
-                        size="md"
-                        color="dark"
-                        styles={{
-                          track: {
-                            borderRadius: 0,
-                            border: '1px solid black'
-                          }
-                        }}
-                      />
-                    </Group>
+                    <Stack gap="xs">
+                      <Group justify="space-between" align="center">
+                        <Group gap="sm">
+                          <IconRobot size={20} color="black" />
+                          <Text fw={600} c="black">AI model training</Text>
+                        </Group>
+                        
+                        <Switch
+                          checked={aiTraining}
+                          onChange={onAiTrainingToggle}
+                          size="md"
+                          color="dark"
+                          styles={{
+                            track: {
+                              borderRadius: 0,
+                              border: '1px solid black'
+                            }
+                          }}
+                        />
+                      </Group>
+                      
+                      <Text size="sm" c="gray.7" pl="28px">
+                        Your anonymized data may be used to train AI models that improve our services. This is completely optional and disabled by default.
+                      </Text>
+                      
+                      {aiTrainingUses.length > 0 && (
+                        <Stack gap="xs" pl="28px">
+                          <Text size="xs" fw={500} c="gray.8">We may use your data to:</Text>
+                          {aiTrainingUses.map((use, index) => (
+                            <Text key={index} size="xs" c="gray.7" pl="md">
+                              • {use}
+                            </Text>
+                          ))}
+                        </Stack>
+                      )}
+                    </Stack>
                   </ModularCard>
                   <Divider />
                 </>
