@@ -2,10 +2,11 @@
  * useConsentStorage Hook
  * 
  * Shared hook for managing cookie consent storage across components
- * Reduces duplication between SimpleCookieConsent, ComplianceCookieConsent, etc.
+ * Uses proper cookie storage instead of localStorage for GDPR compliance
  */
 
 import { useState, useEffect, useCallback } from 'react'
+import { getCookieManager, COOKIE_CONFIG } from './CookieManager'
 
 /**
  * Generate a unique consent ID
@@ -17,21 +18,29 @@ export const generateConsentId = () => {
 
 /**
  * Custom hook for managing consent storage
- * @param {string} storageKey - LocalStorage key for storing consent
+ * @param {string} cookiePrefix - Cookie prefix for storing consent
  * @param {Object} defaultConsent - Default consent values
  * @returns {Object} Consent state and methods
  */
-export const useConsentStorage = (storageKey, defaultConsent = {}) => {
+export const useConsentStorage = (cookiePrefix = 'app', defaultConsent = {}) => {
   const [consent, setConsent] = useState(defaultConsent)
   const [consentId, setConsentId] = useState(null)
   const [consentDate, setConsentDate] = useState(null)
   const [hasConsented, setHasConsented] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  
+  // Initialize cookie manager
+  const cookieManager = getCookieManager({
+    NAMES: {
+      ...COOKIE_CONFIG.NAMES,
+      CONSENT: `${cookiePrefix}_consent`
+    }
+  })
 
-  // Load consent from localStorage
+  // Load consent from cookies
   useEffect(() => {
     try {
-      const savedConsent = localStorage.getItem(storageKey)
+      const savedConsent = cookieManager.getCookie(`${cookiePrefix}_consent`)
       if (savedConsent) {
         const parsed = JSON.parse(savedConsent)
         setConsent(parsed.preferences || parsed.consent || defaultConsent)
@@ -40,13 +49,13 @@ export const useConsentStorage = (storageKey, defaultConsent = {}) => {
         setHasConsented(true)
       }
     } catch (error) {
-      console.warn('Failed to load consent from storage:', error)
+      console.warn('Failed to load consent from cookies:', error)
     } finally {
       setIsLoading(false)
     }
-  }, [storageKey, defaultConsent])
+  }, [cookiePrefix, defaultConsent, cookieManager])
 
-  // Save consent to localStorage
+  // Save consent to cookies
   const saveConsent = useCallback((newConsent, additionalData = {}) => {
     const timestamp = new Date().toISOString()
     const newConsentId = generateConsentId()
@@ -60,7 +69,9 @@ export const useConsentStorage = (storageKey, defaultConsent = {}) => {
     }
 
     try {
-      localStorage.setItem(storageKey, JSON.stringify(consentRecord))
+      cookieManager.setCookie(`${cookiePrefix}_consent`, JSON.stringify(consentRecord), {
+        days: COOKIE_CONFIG.EXPIRY.CONSENT
+      })
       setConsent(newConsent)
       setConsentId(newConsentId)
       setConsentDate(timestamp)
@@ -71,12 +82,12 @@ export const useConsentStorage = (storageKey, defaultConsent = {}) => {
       console.error('Failed to save consent:', error)
       return null
     }
-  }, [storageKey])
+  }, [cookiePrefix, cookieManager])
 
   // Clear consent from storage
   const clearConsent = useCallback(() => {
     try {
-      localStorage.removeItem(storageKey)
+      cookieManager.deleteCookie(`${cookiePrefix}_consent`)
       setConsent(defaultConsent)
       setConsentId(null)
       setConsentDate(null)
@@ -84,7 +95,7 @@ export const useConsentStorage = (storageKey, defaultConsent = {}) => {
     } catch (error) {
       console.error('Failed to clear consent:', error)
     }
-  }, [storageKey, defaultConsent])
+  }, [cookiePrefix, defaultConsent, cookieManager])
 
   // Update partial consent
   const updateConsent = useCallback((updates) => {

@@ -18,6 +18,8 @@ import {
   TabButton
 } from '../UI'
 
+import { getCookieManager, COOKIE_CONFIG } from './CookieManager'
+
 // Standard cookie categories for compliance
 const COOKIE_CATEGORIES = {
   essential: {
@@ -60,7 +62,7 @@ export const ComplianceCookieConsent = ({
   enableDoNotSell = true,
   enableAITraining = true,
   aiTrainingUses = [],
-  storageKey = 'compliance_cookie_consent',
+  cookiePrefix = 'app',
   ...rest
 }) => {
   const [showBanner, setShowBanner] = useState(false)
@@ -72,15 +74,28 @@ export const ComplianceCookieConsent = ({
   const [consentId, setConsentId] = useState(null)
   const [consentDate, setConsentDate] = useState(null)
   const [hasUserChoice, setHasUserChoice] = useState(false)
+  
+  // Initialize cookie manager
+  const cookieManager = getCookieManager({
+    NAMES: {
+      ...COOKIE_CONFIG.NAMES,
+      CONSENT: `${cookiePrefix}_consent`,
+      PREFERENCES: `${cookiePrefix}_preferences`,
+      ANALYTICS: `${cookiePrefix}_analytics_consent`,
+      MARKETING: `${cookiePrefix}_marketing_consent`,
+      AI_TRAINING: `${cookiePrefix}_ai_training_consent`
+    }
+  })
 
   // Initialize consent state
   useEffect(() => {
-    const savedConsent = localStorage.getItem(storageKey)
-    if (savedConsent) {
+    // Load consent from cookies
+    const consentCookie = cookieManager.getCookie(`${cookiePrefix}_consent`)
+    if (consentCookie) {
       try {
-        const parsed = JSON.parse(savedConsent)
+        const parsed = JSON.parse(consentCookie)
         setConsent(parsed.preferences || {})
-        setDoNotSell(parsed.doNotSell || false)
+        setDoNotSell(parsed.doNotSell !== undefined ? parsed.doNotSell : true)
         setAiTraining(parsed.aiTraining || false)
         setConsentId(parsed.consentId)
         setConsentDate(parsed.timestamp)
@@ -95,7 +110,7 @@ export const ComplianceCookieConsent = ({
       setAiTraining(false) // Default to opted out
       setShowBanner(true)
     }
-  }, [storageKey])
+  }, [cookiePrefix, cookieManager])
 
   const initializeDefaultConsent = () => {
     const defaultConsent = {}
@@ -123,7 +138,29 @@ export const ComplianceCookieConsent = ({
       website: websiteName
     }
 
-    localStorage.setItem(storageKey, JSON.stringify(consentRecord))
+    // Save main consent record
+    cookieManager.setCookie(`${cookiePrefix}_consent`, JSON.stringify(consentRecord), {
+      days: COOKIE_CONFIG.EXPIRY.CONSENT
+    })
+    
+    // Save individual category consents for the cookie manager
+    Object.entries(consentData).forEach(([category, granted]) => {
+      if (category === 'essential') {
+        // Essential cookies are always allowed
+        cookieManager.setConsent('necessary', true)
+      } else if (category === 'functional') {
+        cookieManager.setConsent('preferences', granted)
+      } else if (category === 'analytics') {
+        cookieManager.setConsent('analytics', granted)
+      } else if (category === 'advertising') {
+        cookieManager.setConsent('marketing', granted)
+      }
+    })
+    
+    // Save AI training consent
+    if (enableAITraining) {
+      cookieManager.setConsent('ai_training', aiTrainingValue)
+    }
     
     setConsent(consentData)
     setDoNotSell(doNotSellValue)
@@ -582,7 +619,7 @@ ComplianceCookieConsent.propTypes = {
   enableDoNotSell: PropTypes.bool,
   enableAITraining: PropTypes.bool,
   aiTrainingUses: PropTypes.arrayOf(PropTypes.string),
-  storageKey: PropTypes.string
+  cookiePrefix: PropTypes.string
 }
 
 ComplianceCookieConsent.displayName = 'ComplianceCookieConsent'

@@ -59,9 +59,14 @@ export default {
   }
 }
 
-// Helper to clear localStorage for demos
-const clearConsent = (storageKey = 'compliance_cookie_consent_demo') => {
-  localStorage.removeItem(storageKey)
+// Helper to clear cookies for demos
+const clearConsent = (cookiePrefix = 'demo') => {
+  // Clear all consent-related cookies
+  document.cookie = `${cookiePrefix}_consent=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`
+  document.cookie = `${cookiePrefix}_preferences=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`
+  document.cookie = `${cookiePrefix}_analytics_consent=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`
+  document.cookie = `${cookiePrefix}_marketing_consent=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`
+  document.cookie = `${cookiePrefix}_ai_training_consent=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`
   window.location.reload()
 }
 
@@ -73,7 +78,7 @@ const Template = (args) => (
       <p>This demo shows our GDPR & CCPA compliant cookie consent system.</p>
       
       <button 
-        onClick={() => clearConsent(args.storageKey)}
+        onClick={() => clearConsent(args.cookiePrefix)}
         style={{
           padding: '10px 20px',
           backgroundColor: '#333',
@@ -116,7 +121,7 @@ Default.args = {
   cookiePolicyUrl: '/cookie-policy',
   position: 'bottom',
   enableDoNotSell: true,
-  storageKey: 'compliance_cookie_consent_demo'
+  cookiePrefix: 'compliance_cookie_consent_demo'
 }
 
 export const TopPosition = Template.bind({})
@@ -148,7 +153,7 @@ export const WithConsentTracking = () => {
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
         <h1>Consent Tracking Demo</h1>
         <button 
-          onClick={() => clearConsent('consent_tracking_demo')}
+          onClick={() => clearConsent('consent_tracking')}
           style={{
             padding: '10px 20px',
             backgroundColor: '#333',
@@ -176,7 +181,7 @@ export const WithConsentTracking = () => {
         )}
         
         <ComplianceCookieConsent
-          storageKey="consent_tracking_demo"
+          cookiePrefix="consent_tracking"
           onConsentSave={(data) => setConsentData(data)}
         />
       </div>
@@ -207,7 +212,7 @@ ResumeBuilderExample.args = {
     'Enhance industry-specific keyword recommendations',
     'Develop better bullet point suggestions'
   ],
-  storageKey: 'resume_builder_consent'
+  cookiePrefix: 'resume_builder_consent'
 }
 ResumeBuilderExample.storyName = 'Resume Builder Site'
 
@@ -226,7 +231,7 @@ PersonalBlogExample.args = {
     'Analyze writing patterns for AI assistants',
     'Optimize content for better engagement'
   ],
-  storageKey: 'blog_consent'
+  cookiePrefix: 'blog_consent'
 }
 PersonalBlogExample.storyName = 'Personal Blog'
 
@@ -246,6 +251,6 @@ TechStartupExample.args = {
     'Enhance search functionality',
     'Develop predictive analytics for user needs'
   ],
-  storageKey: 'startup_consent'
+  cookiePrefix: 'startup_consent'
 }
 TechStartupExample.storyName = 'Tech Startup'

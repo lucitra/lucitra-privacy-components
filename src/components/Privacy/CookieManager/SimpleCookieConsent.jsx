@@ -9,6 +9,7 @@ import { Text, Group } from '@mantine/core'
 import PropTypes from 'prop-types'
 
 import { ModularCard, ModularButton } from '../UI'
+import { getCookieManager, COOKIE_CONFIG } from './CookieManager'
 
 export const SimpleCookieConsent = ({
   websiteName = 'This website',
@@ -16,26 +17,44 @@ export const SimpleCookieConsent = ({
   privacyPolicyUrl = '/privacy-policy',
   onAccept = () => {},
   position = 'bottom',
-  storageKey = 'simple_cookie_consent',
+  cookiePrefix = 'simple',
   ...rest
 }) => {
   const [showBanner, setShowBanner] = useState(false)
+  
+  // Initialize cookie manager
+  const cookieManager = getCookieManager({
+    NAMES: {
+      ...COOKIE_CONFIG.NAMES,
+      CONSENT: `${cookiePrefix}_consent`
+    }
+  })
 
   useEffect(() => {
     // Check if user has already accepted cookies
-    const hasAccepted = localStorage.getItem(storageKey)
+    const hasAccepted = cookieManager.getCookie(`${cookiePrefix}_consent`)
     if (!hasAccepted) {
       setShowBanner(true)
     }
-  }, [storageKey])
+  }, [cookiePrefix, cookieManager])
 
   const handleAccept = () => {
-    // Save acceptance to localStorage
-    localStorage.setItem(storageKey, JSON.stringify({
+    // Save acceptance to cookie
+    const consentData = {
       accepted: true,
       timestamp: new Date().toISOString(),
       version: '1.0'
-    }))
+    }
+    
+    cookieManager.setCookie(`${cookiePrefix}_consent`, JSON.stringify(consentData), {
+      days: COOKIE_CONFIG.EXPIRY.CONSENT
+    })
+    
+    // Set all category consents to true for simple consent
+    cookieManager.setConsent('necessary', true)
+    cookieManager.setConsent('preferences', true)
+    cookieManager.setConsent('analytics', true)
+    cookieManager.setConsent('marketing', true)
     
     setShowBanner(false)
     onAccept()
@@ -102,7 +121,7 @@ SimpleCookieConsent.propTypes = {
   privacyPolicyUrl: PropTypes.string,
   onAccept: PropTypes.func,
   position: PropTypes.oneOf(['top', 'bottom']),
-  storageKey: PropTypes.string
+  cookiePrefix: PropTypes.string
 }
 
 SimpleCookieConsent.displayName = 'SimpleCookieConsent'

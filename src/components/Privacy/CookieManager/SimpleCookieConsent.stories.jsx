@@ -43,10 +43,9 @@ export default {
   }
 }
 
-// Helper to clear localStorage for demos
-const clearConsent = () => {
-  localStorage.removeItem('simple_cookie_consent')
-  localStorage.removeItem('simple_cookie_consent_demo')
+// Helper to clear cookies for demos
+const clearConsent = (cookiePrefix = 'simple') => {
+  document.cookie = `${cookiePrefix}_consent=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`
   window.location.reload()
 }
 
@@ -86,7 +85,7 @@ Default.args = {
   message: 'uses cookies to enhance your experience. By continuing to use our site, you consent to our use of cookies.',
   privacyPolicyUrl: '/privacy-policy',
   position: 'bottom',
-  storageKey: 'simple_cookie_consent_demo'
+  cookiePrefix: 'simple_cookie_consent_demo'
 }
 
 export const TopPosition = Template.bind({})
