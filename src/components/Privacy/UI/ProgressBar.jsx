@@ -2,11 +2,12 @@
  * ProgressBar Component
  * 
  * Consistent progress display with minimal color usage
- * Replaces colored Progress components with monochrome design
+ * Now uses design tokens for all styling
  */
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import './ProgressBar.css'
 
 export const ProgressBar = ({ 
   value = 0,
@@ -17,71 +18,35 @@ export const ProgressBar = ({
   label = null,
   animate = false,
   striped = false,
-  className,
+  className = '',
   ...rest 
 }) => {
   const percentage = Math.min(Math.max((value / max) * 100, 0), 100)
 
-  const getSizeStyles = () => {
-    switch (size) {
-      case 'xs':
-        return { height: '4px' }
-      
-      case 'sm':
-        return { height: '8px' }
-      
-      case 'md':
-        return { height: '16px' }
-      
-      case 'lg':
-        return { height: '24px' }
-      
-      case 'xl':
-        return { height: '32px' }
-      
-      default:
-        return { height: '16px' }
-    }
-  }
+  const containerClasses = [
+    'progress-bar__container',
+    `progress-bar__container--${size}`
+  ].join(' ')
 
-  const getVariantColor = () => {
-    switch (variant) {
-      case 'success':
-        return 'black'
-      
-      case 'warning':
-        return '#666'
-      
-      case 'error':
-        return '#333'
-      
-      case 'info':
-        return 'black'
-      
-      case 'default':
-      default:
-        return 'black'
-    }
-  }
+  const fillClasses = [
+    'progress-bar__fill',
+    `progress-bar__fill--${variant}`,
+    !animate && 'progress-bar__fill--no-animation'
+  ].filter(Boolean).join(' ')
 
-  const sizeStyles = getSizeStyles()
-  const fillColor = getVariantColor()
+  const stripesClasses = [
+    'progress-bar__stripes',
+    animate && 'progress-bar__stripes--animated'
+  ].filter(Boolean).join(' ')
 
   return (
-    <div style={{ width: '100%' }}>
+    <div className={`progress-bar ${className}`} {...rest}>
       {/* Label */}
       {(showLabel || label) && (
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '4px',
-          fontSize: '12px',
-          color: 'black'
-        }}>
-          {label && <span>{label}</span>}
+        <div className="progress-bar__label">
+          {label && <span className="progress-bar__label-text">{label}</span>}
           {showLabel && (
-            <span style={{ fontFamily: 'monospace', fontWeight: 600 }}>
+            <span className="progress-bar__label-value">
               {percentage.toFixed(1)}%
             </span>
           )}
@@ -89,57 +54,18 @@ export const ProgressBar = ({
       )}
       
       {/* Progress Container */}
-      <div
-        style={{
-          width: '100%',
-          backgroundColor: '#f1f3f4',
-          border: '1px solid gray',
-          position: 'relative',
-          overflow: 'hidden',
-          ...sizeStyles,
-          ...rest.style
-        }}
-        className={className}
-        {...rest}
-      >
+      <div className={containerClasses}>
         {/* Progress Fill */}
         <div
-          style={{
-            width: `${percentage}%`,
-            height: '100%',
-            backgroundColor: fillColor,
-            transition: animate ? 'width 0.3s ease' : 'none',
-            position: 'relative'
-          }}
+          className={fillClasses}
+          style={{ width: `${percentage}%` }}
         >
           {/* Striped Pattern */}
           {striped && (
-            <div
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                background: 'repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255,255,255,0.3) 4px, rgba(255,255,255,0.3) 8px)',
-                animation: animate ? 'progress-stripes 1s linear infinite' : 'none'
-              }}
-            />
+            <div className={stripesClasses} />
           )}
         </div>
       </div>
-      
-      {/* Add CSS animation for striped progress */}
-      <style jsx>{`
-        @keyframes progress-stripes {
-          0% {
-            background-position: 0 0;
-          }
-          100% {
-            background-position: 40px 0;
-          }
-        }
-      `}</style>
     </div>
   )
 }

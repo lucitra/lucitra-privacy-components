@@ -2,87 +2,36 @@
  * ModularCard Component
  * 
  * Reusable card component with consistent modular design
- * Replaces inline styled Card components across Privacy dashboard
+ * Now uses design tokens for all styling
  */
 
 import React from 'react'
-import { Card } from '@mantine/core'
 import PropTypes from 'prop-types'
+import './ModularCard.css'
 
 export const ModularCard = ({ 
   variant = 'primary',
   padding = 'lg',
+  hoverable = false,
   children,
-  className,
+  className = '',
   ...rest 
 }) => {
-  const getCardStyles = () => {
-    const baseStyles = {
-      borderRadius: 0,
-      boxShadow: 'none'
-    }
-
-    switch (variant) {
-      case 'primary':
-        return {
-          ...baseStyles,
-          backgroundColor: 'white',
-          border: '2px solid black'
-        }
-      
-      case 'secondary':
-        return {
-          ...baseStyles,
-          backgroundColor: '#f8f9fa',
-          border: '1px solid gray'
-        }
-      
-      case 'accent':
-        return {
-          ...baseStyles,
-          backgroundColor: 'white',
-          border: '2px solid black',
-          borderLeft: '4px solid black'
-        }
-      
-      case 'status':
-        return {
-          ...baseStyles,
-          backgroundColor: '#f8f9fa',
-          border: '1px solid gray',
-          borderLeft: '4px solid #28a745'
-        }
-      
-      case 'warning':
-        return {
-          ...baseStyles,
-          backgroundColor: '#f8f9fa',
-          border: '1px solid gray',
-          borderLeft: '4px solid #ffc107'
-        }
-      
-      case 'critical':
-        return {
-          ...baseStyles,
-          backgroundColor: '#f8f9fa',
-          border: '1px solid gray',
-          borderLeft: '4px solid #dc3545'
-        }
-      
-      default:
-        return baseStyles
-    }
-  }
+  const cardClasses = [
+    'modular-card',
+    `modular-card--${variant}`,
+    `modular-card--${padding}`,
+    hoverable && 'modular-card--hoverable',
+    className
+  ].filter(Boolean).join(' ')
 
   return (
-    <Card
-      style={getCardStyles()}
-      p={padding}
-      className={className}
+    <div
+      className={cardClasses}
       {...rest}
     >
       {children}
-    </Card>
+    </div>
   )
 }
 
@@ -96,6 +45,7 @@ ModularCard.propTypes = {
     'critical'
   ]),
   padding: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+  hoverable: PropTypes.bool,
   children: PropTypes.node.isRequired,
   className: PropTypes.string
 }
