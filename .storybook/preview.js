@@ -1,6 +1,7 @@
 import React from 'react'
 import { MantineProvider } from '@mantine/core'
 import '@mantine/core/styles.css'
+import '../src/styles/index.css'
 
 const preview = {
   parameters: {
@@ -36,6 +37,14 @@ const preview = {
     (Story, context) => {
       const { colorScheme } = context.globals
       
+      // Set data-theme attribute for design tokens
+      React.useEffect(() => {
+        const actualScheme = colorScheme === 'auto' 
+          ? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+          : colorScheme
+        document.documentElement.setAttribute('data-theme', actualScheme)
+      }, [colorScheme])
+      
       return React.createElement(
         MantineProvider,
         { defaultColorScheme: colorScheme },
@@ -43,11 +52,12 @@ const preview = {
           'div',
           {
             style: {
-              padding: '20px',
+              padding: 'var(--spacing-lg)',
               minHeight: '100vh',
-              backgroundColor: 'var(--mantine-color-body)',
-              color: 'var(--mantine-color-text)',
-              fontFamily: 'system-ui, sans-serif'
+              backgroundColor: 'var(--color-background-Primary)',
+              color: 'var(--color-content-Primary)',
+              fontFamily: 'var(--font-family-inter)',
+              transition: 'background-color 0.3s ease, color 0.3s ease'
             }
           },
           React.createElement(Story)

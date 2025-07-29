@@ -1,0 +1,39 @@
+/* Import design tokens */
+@import './tokens.css';
+@import './typography-utilities.css';
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family-inter);
+  color: var(--color-content-Primary);
+  background-color: var(--color-background-Primary);
+  line-height: var(--line-height-md);
+  margin: 0;
+  padding: 0;
+}
+
+/* Utility classes for privacy components */
+.privacy-container {
+  padding: var(--spacing-md);
+  background-color: var(--color-surface-L1);
+  border-radius: var(--radius-md);
+  border: var(--border-width-sm) solid var(--color-border-Tertiary);
+}
+
+.privacy-header {
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: var(--border-width-sm) solid var(--color-border-Tertiary);
+}
+
+.privacy-section {
+  margin-bottom: var(--spacing-lg);
+}
+
+.privacy-section:last-child {
+  margin-bottom: 0;
+}
