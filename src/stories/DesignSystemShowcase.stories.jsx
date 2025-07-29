@@ -7,7 +7,7 @@ import {
   TabButton,
   ProgressBar
 } from '../components/Privacy/UI'
-import { IconInfo, IconCheck, IconAlertTriangle, IconX } from '@tabler/icons-react'
+import { IconInfoCircle, IconCheck, IconAlertTriangle, IconX } from '@tabler/icons-react'
 
 export default {
   title: 'Design System/Complete Showcase',
@@ -32,7 +32,7 @@ export const CompleteDesignSystem = () => {
       {alertVisible && (
         <AlertBox
           variant="info"
-          icon={<IconInfo size={20} />}
+          icon={<IconInfoCircle size={20} />}
           title="Design Tokens Applied"
           closable
           onClose={() => setAlertVisible(false)}
@@ -151,7 +151,7 @@ export const CompleteDesignSystem = () => {
           <ModularCard variant="secondary">
             <h3 style={{ marginBottom: 'var(--spacing-md)' }}>Alerts</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
-              <AlertBox variant="info" icon={<IconInfo size={20} />} title="Info Alert">
+              <AlertBox variant="info" icon={<IconInfoCircle size={20} />} title="Info Alert">
                 This is an informational message.
               </AlertBox>
               <AlertBox variant="success" icon={<IconCheck size={20} />} title="Success!">

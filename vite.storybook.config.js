@@ -8,6 +8,12 @@ export default defineConfig({
       jsxImportSource: undefined
     })
   ],
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx']
+  },
+  optimizeDeps: {
+    include: ['@tabler/icons-react']
+  },
   esbuild: {
     loader: 'jsx',
     include: /src\/.*\.[jt]sx?$/,
