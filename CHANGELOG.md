@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.7.0](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.6.0...privacy-components-v0.7.0) (2025-07-29)
+
+
+### Features
+
+* add complete design system showcase story ([aeada96](https://github.com/lucitra/lucitra-privacy-components/commit/aeada964100110306cced82956bddaa8ac399921))
+* apply design tokens to UI components ([89cd4cf](https://github.com/lucitra/lucitra-privacy-components/commit/89cd4cf678cfcc160a2858cd8c1d1f8a23a5c149))
+* enhance CodeBlock and StatusIndicator components with design tokens and styles ([654e9f3](https://github.com/lucitra/lucitra-privacy-components/commit/654e9f37f5e3290ca485cd8d4f16bbd1613d8c63))
+* integrate design token system into privacy components ([a9d5def](https://github.com/lucitra/lucitra-privacy-components/commit/a9d5defe92a3fa46c545d6c77aac7fc2dfe6561a))
+
+
+### Code Refactoring
+
+* transition cookie consent management from localStorage to cookies ([896d25e](https://github.com/lucitra/lucitra-privacy-components/commit/896d25efdc4c05c83053137ed687a125a8f0d88d))
+
 ## [0.6.0](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.5.1...privacy-components-v0.6.0) (2025-07-26)
 
 
