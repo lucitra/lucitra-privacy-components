@@ -43,7 +43,7 @@ export {
   AlertBox,
   ProgressBar,
   StatusIndicator,
-  CodeBlock,
+  ModularCodeBlock,
   TabButton,
   
   // Utilities
