@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StandardPage } from '@lucitra/react-components';
 import { PrivacyProvider } from '../../Privacy/PrivacyProvider';
-import { CookieConsentBanner } from '../../Privacy/CookieConsent';
-import { LenisScrollProvider } from '../../Animation';
+import { SimpleCookieConsent as CookieConsentBanner } from '../../Privacy/CookieManager';
+import { LenisScrollProvider } from '@lucitra/react-components';
 
 /**
  * Privacy-specific page layout that extends StandardPage

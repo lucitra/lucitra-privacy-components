@@ -1,13 +1,11 @@
 // Privacy-specific components
-export * from './Privacy/CookieConsent';
-export * from './Privacy/Dashboard';
+export * from './Privacy/CookieManager';
 export * from './Privacy/EnterprisePrivacyManager';
 export * from './Privacy/PrivacyProvider';
-export * from './Privacy/UnifiedPrivacyManager';
-export * from './Privacy/GamingConsentModal';
-export * from './Privacy/DataInventory';
-export * from './Privacy/AITrainingConsent';
-export * from './Privacy/AIGovernancePanel';
+export * from './Privacy/GamingPrivacyConsent';
+export * from './Privacy/AIDataGovernance';
+export * from './Privacy/PrivacyBudgetVisualization';
+export * from './Privacy/Unified';
 
 // Re-export components from @lucitra/react-components
 // This provides convenience while avoiding duplication
