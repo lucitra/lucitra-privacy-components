@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v1.0.1...privacy-components-v1.0.2) (2025-08-01)
+
+
+### Miscellaneous Chores
+
+* update @lucitra/react-components dependency to version 0.25.0 ([99f70ef](https://github.com/lucitra/lucitra-privacy-components/commit/99f70ef589e4197bb822fedde006e47421b7cae5))
+
 ## [1.0.1](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v1.0.0...privacy-components-v1.0.1) (2025-08-01)
 
 
