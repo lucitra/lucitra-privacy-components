@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.0.0](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.8.0...privacy-components-v1.0.0) (2025-08-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* Animation and UI components moved to @lucitra/react-components v0.25.0
+
+### Bug Fixes
+
+* update remaining UI imports to use react-components ([aeaa361](https://github.com/lucitra/lucitra-privacy-components/commit/aeaa361bc1bf042ef70f6a84387fde73cc5ef74c))
+
+
+### Code Refactoring
+
+* move non-privacy components to react-components ([5fdd3d5](https://github.com/lucitra/lucitra-privacy-components/commit/5fdd3d59a54bd237eba8b71726540bccf5c8a040))
+
 ## [0.8.0](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.7.0...privacy-components-v0.8.0) (2025-08-01)
 
 ### Features
