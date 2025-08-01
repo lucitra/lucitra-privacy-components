@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.0.1](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v1.0.0...privacy-components-v1.0.1) (2025-08-01)
+
+
+### Bug Fixes
+
+* resolve all import and build issues ([856b2b6](https://github.com/lucitra/lucitra-privacy-components/commit/856b2b6c403e80b56091da74c8d9dd62ae7b62ca))
+* update CodeBlock import to ModularCodeBlock ([260b1a8](https://github.com/lucitra/lucitra-privacy-components/commit/260b1a84ea6d4cba0c98d6240f6b5c02d2a861c9))
+
+
+### Miscellaneous Chores
+
+* update @lucitra/react-components dependency to latest version ([11b6735](https://github.com/lucitra/lucitra-privacy-components/commit/11b6735e66714464b69c8b0a21aed0c66d8d580d))
+
 ## [1.0.0](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.8.0...privacy-components-v1.0.0) (2025-08-01)
 
 
