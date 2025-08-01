@@ -24,7 +24,7 @@ import {
   ModularBadge,
   AlertBox,
   ProgressBar
-} from '../UI';
+} from '@lucitra/react-components';
 import {
   IconShield,
   IconTrendingUp,

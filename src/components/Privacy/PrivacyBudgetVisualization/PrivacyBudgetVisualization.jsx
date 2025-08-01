@@ -33,7 +33,7 @@ import {
   CodeBlock,
   AlertBox,
   ProgressBar
-} from '../UI'
+} from '@lucitra/react-components'
 
 export function PrivacyBudgetVisualization({
   currentBudget = 75,

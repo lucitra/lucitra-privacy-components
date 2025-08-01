@@ -1,0 +1,1 @@
+export { PrivacyPageLayout } from './PrivacyPageLayout';

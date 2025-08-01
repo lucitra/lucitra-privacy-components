@@ -8,7 +8,7 @@ import React, { useState, useEffect } from 'react'
 import { Text, Group } from '@mantine/core'
 import PropTypes from 'prop-types'
 
-import { ModularCard, ModularButton } from '../UI'
+import { ModularCard, ModularButton } from '@lucitra/react-components'
 import { getCookieManager, COOKIE_CONFIG } from './CookieManager'
 
 export const SimpleCookieConsent = ({

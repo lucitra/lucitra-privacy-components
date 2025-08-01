@@ -16,7 +16,7 @@ import {
   ModularBadge,
   AlertBox,
   TabButton
-} from '../UI'
+} from '@lucitra/react-components'
 
 import { getCookieManager, COOKIE_CONFIG } from './CookieManager'
 

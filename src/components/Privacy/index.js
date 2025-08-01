@@ -35,16 +35,8 @@ export {
 } from './CookieManager'
 
 // UI Design System Components - Reusable modular components
-export {
-  ModularCard,
-  StatusIndicator,
-  ModularButton,
-  ModularBadge,
-  CodeBlock,
-  AlertBox,
-  ProgressBar,
-  TabButton
-} from './UI'
+// UI components are now exported from react-components
+// See main package index.js for re-exports
 
 // Types and utilities
 export * from './constants/privacyConstants'
