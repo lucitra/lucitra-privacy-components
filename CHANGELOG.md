@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.7.0...privacy-components-v0.8.0) (2025-08-01)
+
+
+### Features
+
+* introduce Standard Layout components for improved UI structure ([cb73191](https://github.com/lucitra/lucitra-privacy-components/commit/cb73191705d6acf3ce10882a39e1ec97249a4a3b))
+
 ## [0.7.0](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v0.6.0...privacy-components-v0.7.0) (2025-07-29)
 
 
