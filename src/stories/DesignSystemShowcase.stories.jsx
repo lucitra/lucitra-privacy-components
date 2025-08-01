@@ -6,7 +6,7 @@ import {
   AlertBox,
   TabButton,
   ProgressBar
-} from '../components/Privacy/UI'
+} from '@lucitra/react-components'
 import { IconInfoCircle, IconCheck, IconAlertTriangle, IconX } from '@tabler/icons-react'
 
 export default {

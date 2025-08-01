@@ -1,6 +1,5 @@
 import React from 'react'
-import { ModularButton } from '../components/Privacy/UI/ModularButton'
-import { ModularBadge } from '../components/Privacy/UI/ModularBadge'
+import { ModularButton, ModularBadge } from '@lucitra/react-components'
 
 export default {
   title: 'Design System/Design Tokens',
