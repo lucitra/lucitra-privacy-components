@@ -15,3 +15,6 @@ export * as PrivacyUI from './components/Privacy/UI'
 
 // Privacy Constants
 export * from './components/Privacy/constants/privacyConstants'
+
+// Layout Components
+export * from './components/Layout'

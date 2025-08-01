@@ -372,7 +372,6 @@ export const DesignSystemOverview = {
 
 // Individual Component Demos
 export const CardVariants = {
-  name: 'Card Variants',
   render: () => (
     <Container size="md" py="xl">
       <Stack gap="lg">
