@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.1.0](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v1.0.2...privacy-components-v1.1.0) (2025-08-02)
+
+
+### Features
+
+* integrate Lucitra Design System and update styles ([098fed8](https://github.com/lucitra/lucitra-privacy-components/commit/098fed8f47a6ed9c84f24dce2dff8c78b9e42e5d))
+
+
+### Miscellaneous Chores
+
+* add sync script for @lucitra/react-components and update package.json ([160e77a](https://github.com/lucitra/lucitra-privacy-components/commit/160e77a3a5346d98519ee5ad2d614251423fde67))
+* update @lucitra/react-components dependency to version 0.26.0 ([994793a](https://github.com/lucitra/lucitra-privacy-components/commit/994793a4b3a590f4b30f8e1cb656dc197eb9d961))
+
 ## [1.0.2](https://github.com/lucitra/lucitra-privacy-components/compare/privacy-components-v1.0.1...privacy-components-v1.0.2) (2025-08-01)
 
 
