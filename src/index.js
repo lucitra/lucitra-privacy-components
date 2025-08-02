@@ -2,6 +2,12 @@
 // Enterprise Privacy-Enhancing Technology Components
 // Commercial License - Unauthorized use prohibited
 
+// Import shared design system from react-components
+// Note: Applications should import '@lucitra/react-components/dist/index.css' once
+
+// Import privacy-specific styles
+import './styles/index.css'
+
 // Core Privacy Components
 export * from './components/Privacy'
 

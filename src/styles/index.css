@@ -1,6 +1,10 @@
-/* Import design tokens */
-@import './tokens.css';
-@import './typography-utilities.css';
+/* Import design tokens from shared design system */
+/* Note: These are now imported from @lucitra/react-components/index.css */
+/* If you need to import them separately, use:
+ * @import '@lucitra/react-components/dist/index.css';
+ * or import in your JavaScript:
+ * import '@lucitra/react-components/dist/index.css';
+ */
 
 /* Base styles */
 * {
