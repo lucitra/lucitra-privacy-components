@@ -47,7 +47,10 @@
     "prepare": "husky",
     "prepublishOnly": "npm run build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "sync-deps": "node scripts/sync-react-components.js",
+    "dev:link": "npm link @lucitra/react-components",
+    "dev:unlink": "npm unlink @lucitra/react-components && npm install"
   },
   "peerDependencies": {
     "@mantine/core": ">=8.0.0",
