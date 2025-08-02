@@ -57,7 +57,7 @@
     "react-dom": ">=19.0.0"
   },
   "dependencies": {
-    "@lucitra/react-components": "^0.25.1",
+    "@lucitra/react-components": "^0.26.0",
     "i18next": "^25.3.2",
     "lenis": "^1.1.13",
     "prop-types": "^15.8.1",
